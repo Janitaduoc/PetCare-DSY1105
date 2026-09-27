@@ -8,6 +8,7 @@ class Canino(
 
     private val tarifaBase = 12000.0 // $12.000/hr
 
+    // Tarifa base por hora, con 20% de descuento si el dueño tiene convenio.
     override fun calcularCosto(minutosUso: Int): Double {
         val horas = minutosUso / 60.0
         var costo = tarifaBase * horas

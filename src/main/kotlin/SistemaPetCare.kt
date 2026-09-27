@@ -42,13 +42,12 @@ class SistemaPetCare {
         val costoBase = paciente.calcularCosto(tiempoUsoMinutos)
         val costo = calcularMontoFinal(costoBase, paciente.tipoDueno)
 
-
-
         if (!esMontoValido(costo, paciente, tiempoUsoMinutos)) {
             println("Resultado de tarifa inválido: el monto calculado no es válido.")
-            box.estado = Estado.EnAtencion(paciente) // se revierte, la operación no se completó
+            box.estado = Estado.EnAtencion(paciente)
             return false
         }
+
 
         val ticket = historial.size + 1
         historial.add(RegistroAtencion(ticket, paciente, tiempoUsoMinutos, costo))

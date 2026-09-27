@@ -10,6 +10,7 @@ class Exotico (
 
     private val tarifaBase = 20000.0
 
+    // Tarifa base por hora, con recargo del 30% si el paciente es un animal silvestre.
     override fun calcularCosto(minutosUso: Int): Double {
         val horas = minutosUso / 60.0
         var costo = tarifaBase * horas
