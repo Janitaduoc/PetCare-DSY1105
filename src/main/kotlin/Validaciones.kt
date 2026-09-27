@@ -5,7 +5,7 @@ fun esCodigoAtencionValido(codigo: String): Boolean {
 }
 
 // Un monto negativo siempre es error. Un monto igual a cero solo es válido
-// en el caso de Felino con menos de 20 minutos de atención (regla de negocio de R1).
+// en el caso de Felino con menos de 20 minutos de atención.
 fun esMontoValido(monto: Double, paciente: Paciente, tiempoUsoMinutos: Int): Boolean {
     if (monto < 0) {
         return false
