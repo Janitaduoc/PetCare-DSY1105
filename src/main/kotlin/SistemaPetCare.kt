@@ -37,7 +37,8 @@ class SistemaPetCare {
         box.estado = Estado.EnProceso("Calculando tarifa")
         delay(6500)
 
-        val costo = paciente.calcularCosto(tiempoUsoMinutos)
+        val costoBase = paciente.calcularCosto(tiempoUsoMinutos)
+        val costo = calcularMontoFinal(costoBase, paciente.tipoDueno)
 
         val ticket = historial.size + 1
         historial.add(RegistroAtencion(ticket, paciente, tiempoUsoMinutos, costo))
@@ -45,5 +46,13 @@ class SistemaPetCare {
         box.estado = Estado.Libre
         println("Salida registrada: ticket $ticket, paciente ${paciente.codigoAtencion}, monto $costo")
         return true
+    }
+        private fun calcularMontoFinal(costoBase: Double, tipoDueno: TipoDueno): Double {
+            val conIva = costoBase * 1.19
+            return if (tipoDueno == TipoDueno.MUNICIPAL) {
+                conIva * 0.5
+            } else {
+                conIva
+            }
     }
 }
