@@ -40,12 +40,18 @@ class SistemaPetCare {
         val costoBase = paciente.calcularCosto(tiempoUsoMinutos)
         val costo = calcularMontoFinal(costoBase, paciente.tipoDueno)
 
+        if (!esMontoValido(costo, paciente, tiempoUsoMinutos)) {
+            println("Error: el monto calculado no es válido.")
+            box.estado = Estado.EnAtencion(paciente)
+        }
+
         val ticket = historial.size + 1
         historial.add(RegistroAtencion(ticket, paciente, tiempoUsoMinutos, costo))
 
         box.estado = Estado.Libre
         println("Salida registrada: ticket $ticket, paciente ${paciente.codigoAtencion}, monto $costo")
         return true
+    }
     }
         private fun calcularMontoFinal(costoBase: Double, tipoDueno: TipoDueno): Double {
             val conIva = costoBase * 1.19
