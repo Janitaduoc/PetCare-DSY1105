@@ -1,6 +1,12 @@
 plugins {
     kotlin("jvm") version "2.3.10"
+    application
+
 }
+
+application {
+        mainClass.set("MainKt")
+    }
 
 group = "cl.duoc"
 version = "1.0-SNAPSHOT"
